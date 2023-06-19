@@ -135,7 +135,7 @@ else
 fi
 
 echo "Validar acceso con usuarios de WebMasters a WebServers RANDOM User | RANDOM Host"
-if [ $HOST_USERS == true -a $HOST_LIST == true ]
+if [ "$HOST_USERS" == "true" -a "$HOST_LIST" == "true" ]
 then
  echo "Usuarios y Hosts a validar"
  for usuario in $(shuf -e $member_users -n1 )
@@ -159,7 +159,7 @@ echo "ssh  -o ConnectTimeout=10 admin@${IP_CLIENT2} sudo hostname"
 grade "ssh  -o ConnectTimeout=10 admin@${IP_CLIENT2} sudo hostname"
 
 echo "Validar sudo para un usuario aleatorio de WebMasters en Host Aleatorio de WebServer"
-if [ $HOST_USERS == true -a $HOST_LIST == true ]
+if [ "$HOST_USERS" == "true" -a "$HOST_LIST" == "true" ]
 then
  echo "Usuarios y Hosts a validar"
  for usuario in $(shuf -e $member_users -n1 )
