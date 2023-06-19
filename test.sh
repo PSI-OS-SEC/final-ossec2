@@ -85,6 +85,10 @@ function grade() {
  test $? -eq 0  && echo -e "${GREEN}OK${ENDCOLOR}" && return 0 || echo -e "${RED}FAILED${ENDCOLOR}" && return 1
 }
 
+echo "Obtener Replica"
+echo -n "Replicas 2 : "
+grade "[ $(ipa-replica-manage list|wc -l) -eq 2 ]"
+
 echo "Grupos"
 echo "**************"
 for GROUP in webmasters itadmins itoperators
