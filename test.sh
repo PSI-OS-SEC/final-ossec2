@@ -1,5 +1,9 @@
 #!/bin/bash
 
+RED="\e[31m"
+GREEN="\e[32m"
+ENDCOLOR="\e[0m"
+
 
 if [ -z "$IP_CLIENT1" -o -z "IP_CLIENT2" ]
 then
@@ -78,7 +82,7 @@ function grade() {
  else
   ${COMMAND} &>/dev/null
  fi
- test $? -eq 0  && echo "OK" && return 0 || echo "FAILED" && return 1
+ test $? -eq 0  && echo -e "${GREEN}OK${ENDCOLOR}" && return 0 || echo -e "${RED}FAILED${ENDCOLOR}" && return 1
 }
 
 echo "Grupos"
@@ -111,7 +115,8 @@ else
   HOST_LIST=true
   for member_host in $member_hosts
   do
-    echo "Host: ${member_host} - OK"
+    echo -e "Host: ${member_host} - ${GREEN}OK${ENDCOLOR}"
+
   done
 fi
 echo "Obtener usuarios miembros de webmasters"
@@ -121,12 +126,12 @@ then
  member_users=$(ipa group-show webmasters |grep -i 'Member users:' |cut -d: -f2|xargs|tr -d ',')
 if [ -z "${member_users}" ]
 then
- echo "Contiene Usuarios: FAILED"
+ echo -e  "Contiene Usuarios: ${RED}FAILED${ENDCOLOR}"
 else
   HOST_USERS=true
   for member_user in $member_users
   do
-    echo "User: ${member_user} - OK"
+    echo -e "User: ${member_user} - ${GREEN}OK${ENDCOLOR}"
   done
 fi
 
